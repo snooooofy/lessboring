@@ -12,6 +12,11 @@ export default function Component() {
   const [scrolled, setScrolled] = useState(false)
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false) // State for mobile nav expansion
   const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,7 +68,7 @@ export default function Component() {
         className={`
           fixed left-1/2 -translate-x-1/2 z-50
           bg-background/30 backdrop-blur-lg border border-border/50
-          transition-all duration-700 ease-in-out // Slower transition for header size/position
+          transition-all  // Slower transition for header size/position
 
           // Base width for both mobile and desktop
           w-[calc(100%-2rem)] max-w-screen-xl
@@ -109,15 +114,17 @@ export default function Component() {
             <Link href="#" className="text-sm font-medium hover:underline underline-offset-4">
               contact
             </Link>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="rounded-full"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            >
-              {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-              <span className="sr-only">Toggle theme</span>
-            </Button>
+            {mounted && (
+              <Button
+                variant="ghost"
+                size="icon"
+                className="rounded-full"
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              >
+                {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+                <span className="sr-only">Toggle theme</span>
+              </Button>
+            )}
           </nav>
         </div>
 
@@ -133,15 +140,17 @@ export default function Component() {
               <FlaskConical className="h-6 w-6" /> {/* Always h-6 w-6 on mobile */}
             </Link>
             <div className="flex items-center gap-2">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="rounded-full"
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              >
-                {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-                <span className="sr-only">Toggle theme</span>
-              </Button>
+              {mounted && (
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="rounded-full"
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                >
+                  {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+                  <span className="sr-only">Toggle theme</span>
+                </Button>
+              )}
               <Button
                 variant="ghost"
                 size="icon"
@@ -193,11 +202,19 @@ export default function Component() {
       <main className="relative z-10 flex-1 pt-24 md:pt-24 lg:pt-24">
         {" "}
         {/* Add padding to main content to prevent it from being hidden by fixed header */}
-        <section className="w-full py-16 md:py-28 lg:py-36 xl:py-48">
+        
+
+        
+        <section className="w-full pt-16 pb-24 md:pt-20 md:pb-32 lg:pt-24 lg:pb-40 xl:pt-28 xl:pb-48">
           <div className="container px-4 md:px-6 text-center">
             <div className="space-y-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium border border-primary/20">
+                <FlaskConical className="w-3 h-3" />
+                lessboringlabs
+              </div>
               <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
-                transforming the mundane into the magnificent.
+                transforming the mundane<br />
+                into the magnificent.
               </h1>
               <p className="mx-auto max-w-[800px] text-muted-foreground text-base md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed leading-relaxed">
                 lessboringlabs specializes in innovative solutions that bring excitement and efficiency to everyday

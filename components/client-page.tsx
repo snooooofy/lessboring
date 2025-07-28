@@ -93,15 +93,6 @@ export function ClientPage() {
             />
           </Link>
 
-          <Link 
-            href="#" 
-            className="flex items-center justify-center flex-shrink-0 overflow-hidden rounded-full p-2 hover:bg-accent hover:text-accent-foreground transition-colors"
-          >
-            <FlaskConical
-              className={`transition-all duration-700 ${scrolled ? "h-5 w-5" : "h-6 w-6"}`}
-            />
-          </Link>
-
           {/* Desktop Navigation Links */}
           <nav
             className={`
@@ -147,12 +138,6 @@ export function ClientPage() {
           <div className="flex items-center justify-between w-full">
             <Link href="#" className="flex items-center justify-center flex-shrink-0">
               <FlaskConical className="h-6 w-6" /> {/* Always h-6 w-6 on mobile */}
-            </Link>
-            <Link 
-              href="#" 
-              className="flex items-center justify-center flex-shrink-0 rounded-full p-2 hover:bg-accent hover:text-accent-foreground transition-colors"
-            >
-              <FlaskConical className="h-6 w-6" />
             </Link>
             <div className="flex items-center gap-2">
               {mounted && (
